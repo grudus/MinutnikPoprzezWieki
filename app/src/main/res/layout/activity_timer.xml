@@ -26,7 +26,6 @@
         android:textSize="48sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="128dp"
-        android:text="05:00"
         android:id="@+id/timerTime"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -37,7 +36,7 @@
     <android.support.design.widget.FloatingActionButton
         android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
-        android:onClick="stopStartClicked"
+        android:onClick="stopStartStopClicked"
         android:layout_centerHorizontal="true"
         app:borderWidth="0dp"
         android:id="@+id/timerFloatingButton"
