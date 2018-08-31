@@ -11,12 +11,13 @@ import android.view.View
 // Copied from https://github.com/MRezaNasirloo/CircularProgressBar
 
 class CircularProgressBar(context: Context, attributeSet: AttributeSet): View(context, attributeSet) {
+    var progress = 0F
+        set(value) {
+            field = value
+            invalidate()
+        }
+
     private var strokeWidth = 4F
-    private var progress = 0F
-    set(value) {
-        field = value
-        invalidate()
-    }
     private var min = 0
     private var max = 100
     /**
@@ -46,7 +47,7 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet): View(co
         }
 
         backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        backgroundPaint.color = adjustAlpha(color, 0.3f)
+        backgroundPaint.color = adjustAlpha(color, 0.1f)
         backgroundPaint.style = Paint.Style.STROKE
         backgroundPaint.strokeWidth = strokeWidth
 
