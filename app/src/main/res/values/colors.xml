@@ -9,4 +9,5 @@
     <color name="colorAccent">#FF4081</color>
     <color name="redColor">#E74C3C</color>
     <color name="greenColor">#2ECC71</color>
+    <color name="timerBorder">#98ADBA</color>
 </resources>

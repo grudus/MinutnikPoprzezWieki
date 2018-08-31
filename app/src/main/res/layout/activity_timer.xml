@@ -17,6 +17,7 @@
         android:layout_marginTop="63dp"
         app:progress="100"
         app:progressbarColor="@color/redColor"
+        android:onClick="restartTime"
         app:progressBarThickness="4dp" />
 
     <TextView

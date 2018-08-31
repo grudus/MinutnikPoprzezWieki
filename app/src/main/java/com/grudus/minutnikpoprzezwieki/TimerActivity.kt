@@ -31,12 +31,23 @@ class TimerActivity : AppCompatActivity() {
             toggleStartStopButton(R.color.greenColor, R.drawable.start_timer)
         } else {
             toggleStartStopButton(R.color.redColor, R.drawable.stop_timer)
-            timerController.startCounter { (remainingTime, progress) ->
-                runOnUiThread {
-                    timeView.text = remainingTime
-                    progressCircle.progress = progress
-                }
+            timerController.startCounter { state ->
+                updateViews(state)
             }
+        }
+    }
+
+    fun restartTime(view: View) {
+        timerController.restartTime {state ->
+            updateViews(state)
+        }
+    }
+
+
+    private fun updateViews(state: TimeState) {
+        runOnUiThread {
+            timeView.text = state.remainingTime
+            progressCircle.progress = state.progress
         }
     }
 

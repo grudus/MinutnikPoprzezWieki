@@ -6,10 +6,11 @@ import java.util.concurrent.TimeUnit.SECONDS
 
 class TimerController(private val initialTime: Int) {
 
-    private var timer: Timer? = null
-    private var elapsedTime = 0
     var started = false
         private set
+
+    private var timer: Timer? = null
+    private var elapsedTime = 0
 
     fun initialTime(): String = format(initialTime)
 
@@ -25,7 +26,7 @@ class TimerController(private val initialTime: Int) {
                 action(timeState)
             }
 
-        }, SECONDS.toMillis(1), SECONDS.toMillis(1))
+        }, oneSecond, oneSecond)
     }
 
     fun stopCounter() {
@@ -33,5 +34,11 @@ class TimerController(private val initialTime: Int) {
         timer?.cancel()
     }
 
-    private fun format(seconds: Int): String = DateFormat.format(TIME_FORMAT, SECONDS.toMillis(seconds.toLong())).toString()
+    fun restartTime(action: (TimeState) -> Unit) {
+        elapsedTime = 0
+        action(TimeState(initialTime(), 100F))
+    }
+
+    private fun format(seconds: Int): String =
+            DateFormat.format(TIME_FORMAT, SECONDS.toMillis(seconds.toLong())).toString()
 }

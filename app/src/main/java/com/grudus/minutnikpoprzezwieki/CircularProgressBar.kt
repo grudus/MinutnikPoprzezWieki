@@ -20,6 +20,7 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet): View(co
     private var strokeWidth = 4F
     private var min = 0
     private var max = 100
+    private var noProgressColor = Color.GRAY
     /**
      * Start the progress at 12 o'clock
      */
@@ -40,6 +41,7 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet): View(co
             strokeWidth = attr.getDimension(R.styleable.CircleProgressBar_progressBarThickness, strokeWidth)
             progress = attr.getFloat(R.styleable.CircleProgressBar_progress, progress)
             color = attr.getInt(R.styleable.CircleProgressBar_progressbarColor, color)
+            noProgressColor = attr.getInt(R.styleable.CircleProgressBar_noProgressColor, noProgressColor)
             min = attr.getInt(R.styleable.CircleProgressBar_min, min)
             max = attr.getInt(R.styleable.CircleProgressBar_max, max)
         } finally {
@@ -47,9 +49,9 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet): View(co
         }
 
         backgroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        backgroundPaint.color = adjustAlpha(color, 0.1f)
+        backgroundPaint.color = noProgressColor
         backgroundPaint.style = Paint.Style.STROKE
-        backgroundPaint.strokeWidth = strokeWidth
+        backgroundPaint.strokeWidth = 2F
 
         foregroundPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         foregroundPaint.color = color
@@ -66,15 +68,6 @@ class CircularProgressBar(context: Context, attributeSet: AttributeSet): View(co
         val angle = 360 * progress / max
         canvas.drawArc(rectF, startAngle, angle, false, foregroundPaint)
 
-    }
-
-
-    private fun adjustAlpha(color: Int, factor: Float): Int {
-        val alpha = Math.round(Color.alpha(color) * factor)
-        val red = Color.red(color)
-        val green = Color.green(color)
-        val blue = Color.blue(color)
-        return Color.argb(alpha, red, green, blue)
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
