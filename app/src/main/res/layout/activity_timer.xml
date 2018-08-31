@@ -8,6 +8,17 @@
     android:orientation="vertical"
     tools:context="com.grudus.minutnikpoprzezwieki.TimerActivity">
 
+    <com.grudus.minutnikpoprzezwieki.CircularProgressBar
+        android:id="@+id/timer_progress_bar"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="63dp"
+        app:progress="100"
+        app:progressbarColor="@color/redColor"
+        app:progressBarThickness="4dp" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -15,7 +26,7 @@
         android:textSize="48sp"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="128dp"
-        android:text="04:33"
+        android:text="05:00"
         android:id="@+id/timerTime"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
@@ -27,8 +38,11 @@
         android:layout_width="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:backgroundTint="#96003F"
+        app:borderWidth="0dp"
         android:id="@+id/timerFloatingButton"
+        android:backgroundTint="@color/greenColor"
+        app:fabSize="normal"
+        android:src="@drawable/start_timer"
         android:layout_marginBottom="48dp"
         android:layout_height="wrap_content" />
 

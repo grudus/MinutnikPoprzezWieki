@@ -7,4 +7,6 @@
     <color name="colorPrimaryDark">#181b1d</color>
     <color name="textColor">#eaeaea</color>
     <color name="colorAccent">#FF4081</color>
+    <color name="redColor">#E74C3C</color>
+    <color name="greenColor">#2ECC71</color>
 </resources>
