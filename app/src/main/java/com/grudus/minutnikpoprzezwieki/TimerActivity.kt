@@ -14,9 +14,17 @@ class TimerActivity : AppCompatActivity() {
     private val timeView by lazy { findViewById<TextView>(R.id.timerTime) }
     private val progressCircle by lazy { findViewById<CircularProgressBar>(R.id.timerProgressBar) }
     private val startStopButton by lazy { findViewById<FloatingActionButton>(R.id.timerFloatingButton) }
-    private val initialTime = MINUTES.toSeconds(5).toInt()
 
-    private val timerController = TimerController(initialTime)
+    private val initialTime = MINUTES.toSeconds(5).toInt()
+    private val firstAlarmTime = initialTime / 2
+    private val secondAlarmTime = initialTime / 10
+
+    private val timerController by lazy {
+        TimerController(
+                TimeSettings(initialTime, firstAlarmTime, secondAlarmTime),
+                SoundSettings.fromResources(this, firstAlarm = R.raw.gong, secondAlarm = R.raw.bell)
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +33,7 @@ class TimerActivity : AppCompatActivity() {
         timeView.text = timerController.initialTime()
     }
 
+    @Suppress("UNUSED_PARAMETER")
     fun stopStartStopClicked(view: View) {
         if (timerController.started) {
             timerController.stopCounter()
@@ -37,8 +46,9 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 
-    fun restartTime(view: View) {
-        timerController.restartTime {state ->
+    @Suppress("UNUSED_PARAMETER")
+    fun restartTime( view: View) {
+        timerController.restartTime { state ->
             updateViews(state)
         }
     }
