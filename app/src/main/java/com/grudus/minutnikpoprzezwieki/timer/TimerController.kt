@@ -20,6 +20,8 @@ class TimerController(
     var started = false
         private set
 
+    private var onTimeEnd: () -> Unit = {}
+
     private var timer: Timer? = null
     private var elapsedTime = 0
 
@@ -41,6 +43,10 @@ class TimerController(
                     playSound(soundSettings.secondAlarm)
 
                 action(timeState)
+
+                if (remainingTime == 0) {
+                    handleTimeEnd()
+                }
             }
 
         }, oneSecond, oneSecond)
@@ -55,7 +61,23 @@ class TimerController(
         elapsedTime = 0
         pausePlayer(soundSettings.firstAlarm)
         pausePlayer(soundSettings.secondAlarm)
+        pausePlayer(soundSettings.endAlarm)
         action(TimeState(initialTime(), 100F))
+        if (!started)
+            startCounter(action)
+    }
+
+    fun onTimeEnd(action: () -> Unit) {
+        this.onTimeEnd = action
+    }
+
+    private fun handleTimeEnd() {
+        stopCounter()
+        soundSettings.endAlarm.apply {
+            isLooping = true
+            playSound(this)
+        }
+        onTimeEnd()
     }
 
     private fun playSound(mediaPlayer: MediaPlayer) {

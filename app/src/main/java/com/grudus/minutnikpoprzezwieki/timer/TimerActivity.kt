@@ -7,18 +7,21 @@ import android.support.annotation.DrawableRes
 import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
+import android.view.animation.Animation
+import android.view.animation.AnimationUtils.loadAnimation
 import android.widget.TextView
 import com.grudus.minutnikpoprzezwieki.R
+import com.grudus.minutnikpoprzezwieki.circularprogress.CircularProgressBar
 import com.grudus.minutnikpoprzezwieki.dto.SoundSettings
 import com.grudus.minutnikpoprzezwieki.dto.TimeSettings
 import com.grudus.minutnikpoprzezwieki.dto.TimeState
-import com.grudus.minutnikpoprzezwieki.circularprogress.CircularProgressBar
 import java.util.concurrent.TimeUnit.MINUTES
 
 class TimerActivity : AppCompatActivity() {
     private val timeView by lazy { findViewById<TextView>(R.id.timerTime) }
     private val progressCircle by lazy { findViewById<CircularProgressBar>(R.id.timerProgressBar) }
     private val startStopButton by lazy { findViewById<FloatingActionButton>(R.id.timerFloatingButton) }
+    private val endTimeTextAnimation by lazy { loadAnimation(this, R.anim.end_time_text_animation) }
 
     private val initialTime = MINUTES.toSeconds(5).toInt()
     private val firstAlarmTime = initialTime / 2
@@ -27,7 +30,8 @@ class TimerActivity : AppCompatActivity() {
     private val timerController by lazy {
         TimerController(
                 TimeSettings(initialTime, firstAlarmTime, secondAlarmTime),
-                SoundSettings.fromResources(this, firstAlarm = R.raw.gong, secondAlarm = R.raw.bell)
+                SoundSettings.fromResources(this,
+                        firstAlarm = R.raw.gong, secondAlarm = R.raw.bell, endAlarm = R.raw.end_alarm)
         )
     }
 
@@ -36,6 +40,9 @@ class TimerActivity : AppCompatActivity() {
         setContentView(R.layout.activity_timer)
 
         timeView.text = timerController.initialTime()
+        timerController.onTimeEnd {
+            onTimeEnd()
+        }
     }
 
     @Suppress("UNUSED_PARAMETER")
@@ -52,12 +59,24 @@ class TimerActivity : AppCompatActivity() {
     }
 
     @Suppress("UNUSED_PARAMETER")
-    fun restartTime( view: View) {
+    fun restartTime(view: View) {
+        startStopButton.isEnabled = true
+        startStopButton.alpha = 1F
+        timeView.clearAnimation()
         timerController.restartTime { state ->
             updateViews(state)
         }
     }
 
+
+    private fun onTimeEnd() {
+        runOnUiThread {
+            startStopButton.isEnabled = false
+            startStopButton.alpha = .4F
+            endTimeTextAnimation.repeatCount = Animation.INFINITE
+            timeView.startAnimation(endTimeTextAnimation)
+        }
+    }
 
     private fun updateViews(state: TimeState) {
         runOnUiThread {
