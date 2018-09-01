@@ -1,4 +1,4 @@
-package com.grudus.minutnikpoprzezwieki
+package com.grudus.minutnikpoprzezwieki.dto
 
 import android.content.Context
 import android.media.MediaPlayer

@@ -1,4 +1,4 @@
-package com.grudus.minutnikpoprzezwieki
+package com.grudus.minutnikpoprzezwieki.utils
 
 import java.util.concurrent.TimeUnit
 

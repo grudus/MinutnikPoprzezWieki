@@ -1,4 +1,4 @@
-package com.grudus.minutnikpoprzezwieki
+package com.grudus.minutnikpoprzezwieki.timer
 
 import android.os.Build
 import android.os.Bundle
@@ -8,6 +8,11 @@ import android.support.design.widget.FloatingActionButton
 import android.support.v7.app.AppCompatActivity
 import android.view.View
 import android.widget.TextView
+import com.grudus.minutnikpoprzezwieki.R
+import com.grudus.minutnikpoprzezwieki.dto.SoundSettings
+import com.grudus.minutnikpoprzezwieki.dto.TimeSettings
+import com.grudus.minutnikpoprzezwieki.dto.TimeState
+import com.grudus.minutnikpoprzezwieki.circularprogress.CircularProgressBar
 import java.util.concurrent.TimeUnit.MINUTES
 
 class TimerActivity : AppCompatActivity() {

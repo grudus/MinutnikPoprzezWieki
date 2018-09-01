@@ -6,9 +6,9 @@
     android:layout_height="match_parent"
     android:background="@color/colorBackground"
     android:orientation="vertical"
-    tools:context="com.grudus.minutnikpoprzezwieki.TimerActivity">
+    tools:context="com.grudus.minutnikpoprzezwieki.timer.TimerActivity">
 
-    <com.grudus.minutnikpoprzezwieki.CircularProgressBar
+    <com.grudus.minutnikpoprzezwieki.circularprogress.CircularProgressBar
         android:id="@+id/timerProgressBar"
         android:layout_width="200dp"
         android:layout_height="200dp"

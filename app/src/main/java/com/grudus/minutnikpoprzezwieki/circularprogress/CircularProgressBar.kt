@@ -1,4 +1,4 @@
-package com.grudus.minutnikpoprzezwieki
+package com.grudus.minutnikpoprzezwieki.circularprogress
 
 import android.content.Context
 import android.graphics.Canvas
@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.graphics.RectF
 import android.util.AttributeSet
 import android.view.View
+import com.grudus.minutnikpoprzezwieki.R
 
 // Copied from https://github.com/MRezaNasirloo/CircularProgressBar
 

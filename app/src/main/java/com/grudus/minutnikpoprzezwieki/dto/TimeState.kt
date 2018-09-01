@@ -1,4 +1,4 @@
-package com.grudus.minutnikpoprzezwieki
+package com.grudus.minutnikpoprzezwieki.dto
 
 data class TimeState(val remainingTime: String, val progress: Float) {
     init {

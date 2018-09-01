@@ -1,8 +1,13 @@
-package com.grudus.minutnikpoprzezwieki
+package com.grudus.minutnikpoprzezwieki.timer
 
 import android.media.MediaPlayer
 import android.text.format.DateFormat
 import android.util.Log
+import com.grudus.minutnikpoprzezwieki.dto.SoundSettings
+import com.grudus.minutnikpoprzezwieki.dto.TimeSettings
+import com.grudus.minutnikpoprzezwieki.dto.TimeState
+import com.grudus.minutnikpoprzezwieki.utils.TIME_FORMAT
+import com.grudus.minutnikpoprzezwieki.utils.oneSecond
 import java.util.*
 import java.util.concurrent.TimeUnit.SECONDS
 
