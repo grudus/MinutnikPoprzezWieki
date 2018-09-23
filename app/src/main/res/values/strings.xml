@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MinutnikPoprzezWieki</string>
+    <string name="settings_timer_time_label">Czas odliczania:</string>
+    <string name="settings_save_button">Zapisz</string>
+    <string name="menu_settings">Ustawienia</string>
+    <string name="settings_toast">Czas został zmieniony</string>
 </resources>
